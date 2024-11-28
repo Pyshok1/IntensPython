@@ -1,0 +1,19 @@
+def product_of_odd_multiples_of_13():
+    product = 1
+    found = False
+
+    # Перебираем все двузначные числа от 10 до 99
+    for num in range(10, 100):
+        # Проверяем, является ли число нечетным и кратным 13
+        if num % 2 != 0 and num % 13 == 0:
+            product *= num
+            found = True
+
+    # Если не найдено ни одного числа, выводим сообщение
+    if not found:
+        return "Нет двузначных нечетных чисел, кратных 13."
+    
+    return product
+
+result = product_of_odd_multiples_of_13()
+print("Произведение двузначных нечетных чисел, кратных 13:", result)
