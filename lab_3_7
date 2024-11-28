@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main() {
+    int suit_number, rank_number;
+
+    printf("Введите номер масти (1 - пики, 2 - трефы, 3 - бубны, 4 - червы): ");
+    scanf("%d", &suit_number);
+    
+    printf("Введите номер достоинства (2-10, 11 - валет, 12 - дама, 13 - король, 14 - туз): ");
+    scanf("%d", &rank_number);
+
+    // Определяем масть
+    const char* suit;
+    if (suit_number == 1) suit = "пики";
+    else if (suit_number == 2) suit = "трефы";
+    else if (suit_number == 3) suit = "бубны";
+    else if (suit_number == 4) suit = "червы";
+    else suit = "неизвестная масть";
+
+    // Определяем достоинство
+    const char* rank;
+    if (rank_number >= 2 && rank_number <= 10) {
+        static char buffer[3]; // Для чисел от 2 до 10
+        sprintf(buffer, "%d", rank_number);
+        rank = buffer;
+    } else if (rank_number == 11) rank = "валет";
+    else if (rank_number == 12) rank = "дама";
+    else if (rank_number == 13) rank = "король";
+    else if (rank_number == 14) rank = "туз";
+    else rank = "неизвестное достоинство";
+
+    printf("Ваша карта: %s %s\n", rank, suit);
+
+    return 0;
+}
