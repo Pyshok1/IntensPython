@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    double a, b, c;
+
+    // Ввод сторон треугольника
+    printf("Введите длины сторон треугольника a, b и c: ");
+    scanf("%lf %lf %lf", &a, &b, &c);
+
+    // Определяем большую и меньшую сторону
+    double max_side = a;
+    double min_side = a;
+
+    if (b > max_side) max_side = b;
+    if (c > max_side) max_side = c;
+    
+    if (b < min_side) min_side = b;
+    if (c < min_side) min_side = c;
+
+    // Отношение высот
+    double height_ratio = min_side / max_side;
+
+    printf("Отношение высот h_min к h_max: %.2f\n", height_ratio);
+
+    return 0;
+}
