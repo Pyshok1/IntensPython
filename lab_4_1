@@ -1,0 +1,15 @@
+#include <iostream>
+
+int main() {
+    int sum = 0;
+
+    // Вычисляем сумму чисел от 1 до 100
+    for (int i = 1; i <= 100; ++i) {
+        sum += i;
+    }
+
+    // Выводим результат
+    std::cout << "Сумма чисел от 1 до 100 равна: " << sum << std::endl;
+
+    return 0;
+}
