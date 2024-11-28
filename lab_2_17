@@ -1,0 +1,18 @@
+def polygon_area(points):
+    n = len(points)  # Количество вершин
+    area = 0.0
+    
+    for i in range(n):
+        x1, y1 = points[i]
+        x2, y2 = points[(i + 1) % n]  # Следующая вершина (с учетом замыкания)
+        area += x1 * y2 - x2 * y1
+    
+    return abs(area) / 2.0
+
+# Заданные точки (точки могут быть вручную заменены)
+points = [(3, 41), (4, 5), (7, 2), (3, 17)]
+
+# Вычисление площади
+area = polygon_area(points)
+
+print(f"Площадь четырехугольника: {area}")
