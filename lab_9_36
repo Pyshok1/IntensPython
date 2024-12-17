@@ -1,0 +1,29 @@
+import math
+
+def angle_with_x_axis(x, y):
+    """Функция для вычисления угла между отрезком и осью OX."""
+    return math.atan2(y, x)
+
+def main():
+    # Ввод координат точек A и B
+    x1, y1 = map(float, input("Введите координаты точки A (x1, y1): ").split())
+    x2, y2 = map(float, input("Введите координаты точки B (x2, y2): ").split())
+
+    # Вычисление углов для отрезков OA и OB
+    angle_A = angle_with_x_axis(x1, y1)
+    angle_B = angle_with_x_axis(x2, y2)
+
+    # Приведение углов к положительному диапазону [0, 2π]
+    angle_A = angle_A if angle_A >= 0 else angle_A + 2 * math.pi
+    angle_B = angle_B if angle_B >= 0 else angle_B + 2 * math.pi
+
+    # Сравнение углов
+    if angle_A > angle_B:
+        print("Отрезок OA образует больший угол с осью OX.")
+    elif angle_A < angle_B:
+        print("Отрезок OB образует больший угол с осью OX.")
+    else:
+        print("Отрезки OA и OB образуют одинаковый угол с осью OX.")
+
+if __name__ == "__main__":
+    main()
