@@ -1,0 +1,40 @@
+def rearrange_array(arr):
+    n = len(arr)
+    result = []
+    
+    # Используем два указателя: один с начала, другой с конца
+    left = 0
+    right = n - 1
+    
+    while left <= right:
+        if left == right:  # Если указатели встретились, добавляем только один элемент
+            result.append(arr[left])
+        else:
+            result.append(arr[left])   # Добавляем элемент с левой стороны
+            result.append(arr[right])  # Добавляем элемент с правой стороны
+        
+        left += 1
+        right -= 1
+    
+    return result
+
+def main():
+    N = int(input("Введите размер массива: "))
+    
+    if N <= 0:
+        print("Размер массива должен быть положительным.")
+        return
+    
+    A = []
+    print("Введите элементы массива:")
+    for _ in range(N):
+        element = int(input())
+        A.append(element)
+    
+    rearranged_array = rearrange_array(A)
+    
+    print("Элементы массива в заданном порядке:")
+    print(rearranged_array)
+
+if __name__ == "__main__":
+    main()
