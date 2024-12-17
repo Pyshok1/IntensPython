@@ -1,0 +1,50 @@
+def input_matrix(rows, cols):
+    """Функция для ввода матрицы"""
+    matrix = []
+    print(f"Введите элементы матрицы ({rows} x {cols}):")
+    for i in range(rows):
+        row = list(map(int, input().split()))
+        if len(row) != cols:
+            print(f"Ошибка: ожидается {cols} элементов в строке.")
+            return None
+        matrix.append(row)
+    return matrix
+
+def find_max(matrix):
+    """Функция для нахождения максимального элемента в матрице"""
+    max_value = matrix[0][0]
+    for row in matrix:
+        for value in row:
+            if value > max_value:
+                max_value = value
+    return max_value
+
+def count_max_occurrences(matrix, max_value):
+    """Функция для подсчета количества вхождений максимального элемента"""
+    count = 0
+    for row in matrix:
+        count += row.count(max_value)
+    return count
+
+def main():
+    # Ввод размеров матрицы
+    rows = int(input("Введите количество строк (N): "))
+    cols = int(input("Введите количество столбцов (M): "))
+
+    # Ввод матрицы
+    matrix = input_matrix(rows, cols)
+    if matrix is None:
+        return
+
+    # Нахождение максимального элемента
+    max_value = find_max(matrix)
+
+    # Подсчет количества вхождений максимального элемента
+    occurrences = count_max_occurrences(matrix, max_value)
+
+    # Вывод результата
+    print(f"Максимальное значение: {max_value}")
+    print(f"Количество вхождений максимального значения: {occurrences}")
+
+if __name__ == "__main__":
+    main()
