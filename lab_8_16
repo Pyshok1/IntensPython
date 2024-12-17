@@ -1,0 +1,37 @@
+def find_min_of_max_in_columns(matrix):
+    if not matrix or not matrix[0]:
+        return None  # Обработка пустой матрицы
+
+    # Получаем количество строк и столбцов
+    M = len(matrix)
+    N = len(matrix[0])
+
+    # Инициализируем список для хранения максимальных элементов каждого столбца
+    max_in_columns = []
+
+    # Находим максимальные элементы для каждого столбца
+    for j in range(N):
+        max_element = matrix[0][j]
+        for i in range(1, M):
+            if matrix[i][j] > max_element:
+                max_element = matrix[i][j]
+        max_in_columns.append(max_element)
+
+    # Находим минимальный элемент среди максимальных
+    min_of_max = min(max_in_columns)
+    return min_of_max
+
+# Пример использования
+if __name__ == "__main__":
+    # Ввод матрицы
+    M = int(input("Введите количество строк (M): "))
+    N = int(input("Введите количество столбцов (N): "))
+
+    matrix = []
+    print("Введите элементы матрицы:")
+    for i in range(M):
+        row = list(map(int, input().split()))
+        matrix.append(row)
+
+    result = find_min_of_max_in_columns(matrix)
+    print("Минимальный среди максимальных элементов столбцов:", result)
