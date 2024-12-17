@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+struct Cupboard {
+    char manufacturer[50]; // Фирма производитель шкафа
+    char material[30];     // Материал
+    int shelves;           // Количество полок
+    double price;          // Цена
+};
+
+// Функция для вывода информации о шкафе
+void displayCupboardInfo(struct Cupboard cupboard) {
+    printf("Фирма производитель: %s\n", cupboard.manufacturer);
+    printf("Материал: %s\n", cupboard.material);
+    printf("Количество полок: %d\n", cupboard.shelves);
+    printf("Цена: %.2f\n", cupboard.price);
+}
+
+int main() {
+    struct Cupboard myCupboard;
+
+    // Ввод данных о шкафе
+    printf("Введите фирму производителя: ");
+    fgets(myCupboard.manufacturer, sizeof(myCupboard.manufacturer), stdin);
+    
+    printf("Введите материал: ");
+    fgets(myCupboard.material, sizeof(myCupboard.material), stdin);
+    
+    printf("Введите количество полок: ");
+    scanf("%d", &myCupboard.shelves);
+    
+    printf("Введите цену: ");
+    scanf("%lf", &myCupboard.price);
+
+    // Вывод информации о шкафе
+    printf("\nИнформация о шкафе:\n");
+    displayCupboardInfo(myCupboard);
+
+    return 0;
+}
