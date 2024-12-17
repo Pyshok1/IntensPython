@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string>
+
+struct Glasses {
+    std::string country;        // Страна производитель
+    std::string manufacturer;   // Производитель
+    double diopters;            // Число диоптрий
+    std::string material;       // Материал, из которого изготовлен
+    double price;               // Цена
+
+    // Метод для вывода информации о очках
+    void displayInfo() const {
+        std::cout << "Страна производитель: " << country << std::endl;
+        std::cout << "Производитель: " << manufacturer << std::endl;
+        std::cout << "Число диоптрий: " << diopters << std::endl;
+        std::cout << "Материал: " << material << std::endl;
+        std::cout << "Цена: " << price << std::endl;
+    }
+};
+
+int main() {
+    // Пример использования структуры Glasses
+    Glasses myGlasses;
+
+    // Ввод данных
+    std::cout << "Введите страну производителя: ";
+    std::getline(std::cin, myGlasses.country);
+    
+    std::cout << "Введите производителя: ";
+    std::getline(std::cin, myGlasses.manufacturer);
+    
+    std::cout << "Введите число диоптрий: ";
+    std::cin >> myGlasses.diopters;
+
+    std::cin.ignore(); // Игнорируем символ новой строки после ввода числа
+
+    std::cout << "Введите материал: ";
+    std::getline(std::cin, myGlasses.material);
+    
+    std::cout << "Введите цену: ";
+    std::cin >> myGlasses.price;
+
+    // Вывод информации о очках
+    std::cout << "\nИнформация об очках:\n";
+    myGlasses.displayInfo();
+
+    return 0;
+}
