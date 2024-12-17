@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_PRODUCTS 100
+
+// Определение структуры Prise
+struct Prise {
+    char product_name[50];   // Название товара
+    char store_name[50];     // Название магазина
+    double cost;             // Стоимость товара в рублях
+};
+
+// Функция для сортировки массива структур по стоимости товара
+void sortByCost(struct Prise products[], int count) {
+    struct Prise temp;
+    for (int i = 0; i < count - 1; i++) {
+        for (int j = 0; j < count - i - 1; j++) {
+            if (products[j].cost > products[j + 1].cost) {
+                // Обмен значениями
+                temp = products[j];
+                products[j] = products[j + 1];
+                products[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// Функция для вывода информации о товарах
+void displayProducts(struct Prise products[], int count) {
+    printf("\nСписок товаров:\n");
+    for (int i = 0; i < count; i++) {
+        printf("Товар: %s | Магазин: %s | Цена: %.2f руб.\n",
+               products[i].product_name, products[i].store_name, products[i].cost);
+    }
+}
+
+int main() {
+    struct Prise products[MAX_PRODUCTS];
+    int count;
+
+    // Ввод количества товаров
+    printf("Введите количество товаров: ");
+    scanf("%d", &count);
+    
+    // Ввод данных о товарах
+    for (int i = 0; i < count; i++) {
+        printf("Введите название товара %d: ", i + 1);
+        getchar(); // Очистка буфера ввода перед fgets
+        fgets(products[i].product_name, sizeof(products[i].product_name), stdin);
+        products[i].product_name[strcspn(products[i].product_name, "\n")] = 0; // Удаление символа новой строки
+
+        printf("Введите название магазина %d: ", i + 1);
+        fgets(products[i].store_name, sizeof(products[i].store_name), stdin);
+        products[i].store_name[strcspn(products[i].store_name, "\n")] = 0; // Удаление символа новой строки
+        
+        printf("Введите стоимость товара %d (в рублях): ", i + 1);
+        scanf("%lf", &products[i].cost);
+    }
+
+    // Сортировка товаров по стоимости
+    sortByCost(products, count);
+
+    // Вывод отсортированного списка товаров
+    displayProducts(products, count);
+
+    return 0;
+}
