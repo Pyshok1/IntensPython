@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <limits.h>
+
+#define MAX_ROWS 100
+#define MAX_COLS 100
+
+// Функция для ввода матрицы
+void inputMatrix(int matrix[MAX_ROWS][MAX_COLS], int rows, int cols) {
+    printf("Введите элементы матрицы (%d x %d):\n", rows, cols);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+}
+
+// Функция для нахождения максимальных элементов в столбцах
+void findMaxInColumns(int matrix[MAX_ROWS][MAX_COLS], int rows, int cols, int maxInCols[MAX_COLS]) {
+    for (int j = 0; j < cols; j++) {
+        maxInCols[j] = INT_MIN; // Инициализация минимально возможным значением
+        for (int i = 0; i < rows; i++) {
+            if (matrix[i][j] > maxInCols[j]) {
+                maxInCols[j] = matrix[i][j];
+            }
+        }
+    }
+}
+
+// Функция для нахождения минимального значения среди максимальных элементов столбцов
+int findMinAmongMax(int maxInCols[MAX_COLS], int cols) {
+    int min = INT_MAX; // Инициализация минимально возможным значением
+    for (int j = 0; j < cols; j++) {
+        if (maxInCols[j] < min) {
+            min = maxInCols[j];
+        }
+    }
+    return min;
+}
+
+int main() {
+    int matrix[MAX_ROWS][MAX_COLS];
+    int maxInCols[MAX_COLS];
+    int rows, cols;
+
+    // Ввод размеров матрицы
+    printf("Введите количество строк и столбцов (M N): ");
+    scanf("%d %d", &rows, &cols);
+
+    // Ввод матрицы
+    inputMatrix(matrix, rows, cols);
+
+    // Нахождение максимальных элементов в столбцах
+    findMaxInColumns(matrix, rows, cols, maxInCols);
+
+    // Нахождение минимального среди максимальных
+    int result = findMinAmongMax(maxInCols, cols);
+
+    // Вывод результата
+    printf("Минимальный среди максимальных элементов столбцов: %d\n", result);
+
+    return 0;
+}
