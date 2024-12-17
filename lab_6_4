@@ -1,0 +1,39 @@
+#include <iostream>
+#include <cmath> // Для функции abs
+
+int main() {
+    long long n; // Вводимое число
+    int positiveCount = 0; // Счетчик положительных чисел
+    int negativeCount = 0; // Счетчик отрицательных чисел
+    int zeroCount = 0;     // Счетчик нулей
+
+    std::cout << "Введите число: ";
+    std::cin >> n;
+
+    // Проверяем, является ли число нулем
+    if (n == 0) {
+        zeroCount++;
+    } else {
+        // Преобразуем n в положительное, чтобы работать с его цифрами
+        long long absN = std::abs(n);
+        
+        do {
+            int digit = absN % 10; // Получаем последнюю цифру
+            if (digit > 0) {
+                positiveCount++; // Увеличиваем счетчик положительных цифр
+            } else if (digit < 0) {
+                negativeCount++; // Увеличиваем счетчик отрицательных цифр (не будет, так как digit всегда >= 0)
+            } else {
+                zeroCount++;     // Увеличиваем счетчик нулей (не будет, так как digit всегда >= 0)
+            }
+            absN /= 10; // Убираем последнюю цифру
+        } while (absN > 0); // Продолжаем, пока есть цифры
+    }
+
+    // Вывод результатов
+    std::cout << "Количество положительных цифр: " << positiveCount << std::endl;
+    std::cout << "Количество отрицательных цифр: " << negativeCount << std::endl;
+    std::cout << "Количество нулей: " << zeroCount << std::endl;
+
+    return 0;
+}
