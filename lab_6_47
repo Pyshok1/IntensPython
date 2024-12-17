@@ -1,0 +1,29 @@
+def gcd(a, b):
+    """Функция для нахождения НОД с использованием алгоритма Евклида."""
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+def reduce_fraction(m, n):
+    """Функция для сокращения дроби m/n."""
+    if n == 0:
+        raise ValueError("Знаменатель не может быть равен нулю.")
+    
+    # Находим НОД
+    divisor = gcd(m, n)
+    
+    # Сокращаем дробь
+    m_reduced = m // divisor
+    n_reduced = n // divisor
+    
+    return m_reduced, n_reduced
+
+# Ввод числителя и знаменателя
+m = int(input("Введите числитель (m): "))
+n = int(input("Введите знаменатель (n): "))
+
+# Сокращаем дробь
+m_reduced, n_reduced = reduce_fraction(m, n)
+
+# Вывод результата
+print(f"Сокращенная дробь: {m_reduced}/{n_reduced}")
