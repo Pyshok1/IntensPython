@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+struct Train {
+    std::string destination; // Название пункта назначения
+    int trainNumber;         // Номер поезда
+    std::string departureTime; // Время отправления (в формате HH:MM)
+};
+
+// Функция для сортировки поездов по времени отправления
+bool compareByDepartureTime(const Train &a, const Train &b) {
+    return a.departureTime < b.departureTime;
+}
+
+// Функция для вывода информации о поездах
+void displayTrains(const std::vector<Train> &trains) {
+    std::cout << "\nСписок поездов:\n";
+    for (const auto &train : trains) {
+        std::cout << "Пункт назначения: " << train.destination 
+                  << " | Номер поезда: " << train.trainNumber 
+                  << " | Время отправления: " << train.departureTime << "\n";
+    }
+}
+
+int main() {
+    std::vector<Train> trains;
+    int count;
+
+    // Ввод количества поездов
+    std::cout << "Введите количество поездов: ";
+    std::cin >> count;
+    std::cin.ignore(); // Очистка буфера ввода
+
+    // Ввод данных о поездах
+    for (int i = 0; i < count; ++i) {
+        Train train;
+        std::cout << "Введите пункт назначения для поезда " << (i + 1) << ": ";
+        std::getline(std::cin, train.destination);
+        std::cout << "Введите номер поезда " << (i + 1) << ": ";
+        std::cin >> train.trainNumber;
+        std::cin.ignore(); // Очистка буфера ввода
+        std::cout << "Введите время отправления (HH:MM) для поезда " << (i + 1) << ": ";
+        std::getline(std::cin, train.departureTime);
+        
+        trains.push_back(train);
+    }
+
+    // Сортировка поездов по времени отправления
+    std::sort(trains.begin(), trains.end(), compareByDepartureTime);
+
+    // Вывод отсортированного списка поездов
+    displayTrains(trains);
+
+    return 0;
+}
